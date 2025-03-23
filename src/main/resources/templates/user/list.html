@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>소프 게시판</title>
+  <link rel="stylesheet" type="text/css" href="/common.css" />
+  <style>
+    div.panel { width: 1000px; }
+    form select:nth-child(1) { margin-right: 4em; }
+    form select:last-child { float: right; }
+    table.list { width: 100%; margin-top: 1em; }
+  </style>
+</head>
+<body>
+<div class="main-menu">
+  <div><h1>소프 게시판</h1>
+    <a href="/">홈</a> <a href="/login">로그인</a> <a href="/user/list">사용자 관리</a>
+  </div>
+</div>
+<div class="container">
+  <nav>시스템 관리 - 사용자 목록</nav>
+  <main>
+    <div class="panel">
+      <h1 class="panel-header">사용자 목록</h1>
+      <div class="panel-body">
+        <form method="get">
+          <select> <option>정렬순서</option> <option>가입순서 내림차순</option>
+            <option>사용자 아이디 오름차순</option> <option>이름 오름차순</option></select>
+          <select> <option>조회 조건</option> <option>사용자 아이디</option>
+            <option>이름</option> <option>사용자 유형</option></select>
+          <input type="text">
+          <button type="button" class="btn cyan small">조회</button>
+          <a class="btn small" href="list">초기화</a>
+          <select><option value="10">10</option><option value="15">15</option>
+            <option value="30">30</option><option value="50">50</option></select>
+        </form>
+        <table class="list">
+          <thead>
+            <tr><th>ID</th><th>사용자 아이디</th><th>이름</th><th>이메일</th>
+              <th>활성</th><th>권한</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>202014199</td><td>홍길동</td><td>hong9@skhu.ac.kr</td>
+              <td>활성</td><td>학생</td></tr>
+            <tr><td>1</td><td>202014199</td><td>홍길동</td><td>hong9@skhu.ac.kr</td>
+              <td>활성</td><td>학생</td></tr>
+            <tr><td>1</td><td>202014199</td><td>홍길동</td><td>hong9@skhu.ac.kr</td>
+              <td>활성</td><td>학생</td></tr>
+            <tr><td>1</td><td>202014199</td><td>홍길동</td><td>hong9@skhu.ac.kr</td>
+              <td>활성</td><td>학생</td></tr>
+            <tr><td>1</td><td>202014199</td><td>홍길동</td><td>hong9@skhu.ac.kr</td>
+              <td>활성</td><td>학생</td></tr>
+            <tr><td>1</td><td>202014199</td><td>홍길동</td><td>hong9@skhu.ac.kr</td>
+              <td>활성</td><td>학생</td></tr>
+            <tr><td>1</td><td>202014199</td><td>홍길동</td><td>hong9@skhu.ac.kr</td>
+              <td>활성</td><td>학생</td></tr>
+            <tr><td>1</td><td>202014199</td><td>홍길동</td><td>hong9@skhu.ac.kr</td>
+              <td>활성</td><td>학생</td></tr>
+            <tr><td>1</td><td>202014199</td><td>홍길동</td><td>hong9@skhu.ac.kr</td>
+              <td>활성</td><td>학생</td></tr>
+            <tr><td>1</td><td>202014199</td><td>홍길동</td><td>hong9@skhu.ac.kr</td>
+              <td>활성</td><td>학생</td></tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <table>
+            <tr><td class="active"><a>1</a></td>
+              <td><a>2</a></td> <td><a>3</a></td> <td><a>4</a></td>
+              <td><a>5</a></td> <td><a>6</a></td> <td><a>7</a></td>
+              <td><a>8</a></td> <td><a>9</a></td> <td><a>10</a></td>
+              <td><a>&gt;</a></td>
+            </tr>
+          </table>
+        </div>
+      </div>    
+    </div>
+  </main>
+  <div class="footer">
+    <div style="float: left; padding-right: 20px;">
+      <img src="/images/skhu.png" style="width: 200px; "/></div>
+    <div>152-716 서울시 구로구 연동로 320 / 지하철 1, 7호선 온수(성공회대입구)역 T.02-2610-4114</div>
+    <div style="margin-top: 5px;">Copyright (c) Sung-Kong-Hoe Univisity. All rights reserved.</div>
+  </div>  
+</div>
+</body>
+</html>

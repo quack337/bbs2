@@ -1,0 +1,67 @@
+body { background-color: #eee; padding: 0; margin-top: 2px; }
+
+div.main-menu { border-bottom: 1px solid #ccc; padding: 10px 0px;
+  background-color: #f8f8f8; }
+div.main-menu div { max-width: 1200px; margin: 0px auto; }
+div.main-menu h1 { margin: 0; font-size: 16pt; display: inline-block; }
+div.main-menu a { text-decoration: none; color: black; padding: 0.4em 1em; }
+div.main-menu a:hover { background-color: #ddd; }
+
+div.container { width: 1200px; margin: 0px auto; padding: 20px;  
+  background-color: white; }
+main { min-height: 700px; }
+nav { padding: 5px; border-bottom: 1px solid #ddd; margin-bottom: 25px; }
+.right { float: right; }
+
+select { border: 1px solid #aaa; padding: 6px 15px; font-size: 11pt; }
+input[type=text] { border: 1px solid #aaa; padding: 6px; font-size: 11pt; }
+input[type=password] { border: 1px solid #aaa; padding: 6px; font-size: 11pt; }
+textarea { border: 1px solid #aaa; padding: 6px; }
+
+.btn { border: 1px solid #ddd; background: linear-gradient(#fff, #d0d0d0);
+  text-decoration: none; color: black; display: inline-block;
+  font-size: 11pt; padding: 0.6em 2em; border-radius: 0.5em; }
+
+.btn.small { padding: 0.4em 1em; border-radius: 0.3em; }
+.btn:active { -ms-transform: translateY(2px); -webkit-transform: translateY(2px);
+  transform: translateY(2px); background: #ccc; }
+
+.btn.blue { color: white; border: none; background: linear-gradient(#8cf, #05c); }
+.btn.blue:active { background: #05c; }
+
+.btn.green { color: white; border: none; background: linear-gradient(#8e8, #080); }
+.btn.green:active { background: #080; }
+
+.btn.red { color: white; border: none; background: linear-gradient(#faa, #a00); }
+.btn.red:active { background: #800; }
+
+.btn.cyan { color: white; border: none; background: linear-gradient(#9ee, #088); }
+.btn.cyan:active { background: #088; }
+
+div.footer { border-top:1px solid #eee; padding:30px; font-size:10pt; color:#888; width: 100%; margin-top: 20px; }
+
+div.pagination { display: inline-block; }
+div.pagination table { border-collapse: collapse; margin-top: 1em; }
+div.pagination table td { border: 1px solid #ccc; text-align: center; padding: 0; }
+div.pagination table td.active { background-color: #48f; }
+div.pagination table a { text-decoration: none; color: blue; display: inline-block;
+  width: 25px; padding: 6px; }
+div.pagination table td.active a { color: white; }
+
+table.list { border-collapse: collapse; }
+table.list td { border: 1px solid #ddd; padding: 0.4em; }
+table.list thead th  { border: 1px solid #ddd; padding: 0.4em; background-color: #eee; }
+tr[href]:hover { cursor: pointer; background-color: #ffc; }
+
+div.table { display: table; }
+div.row { display: table-row; }
+div.cell { display: table-cell; padding: 5px; }
+
+div.panel {
+  margin: 1em;
+  border: 1px solid #ddd; border-radius: 5px;
+  box-shadow: 3px 3px 3px #ccc; }
+div.panel h1 {
+  margin: 0; font-size: 14pt; font-weight: bold; 
+  background:linear-gradient(90deg, #def, #bcd); padding: 10px 15px 7px 15px; }
+div.panel-body { padding: 20px; font-size: 11pt; }
