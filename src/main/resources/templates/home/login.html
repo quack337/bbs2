@@ -29,7 +29,8 @@
       <h1 class="login-header">소프 게시판 로그인</h1>
       <div class="login-body">
         <img src="images/skhu_logo.png" style="width: 200px;" />
-        <form method="post" action="main.html">
+        <form method="post" action="/login_processing">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />        
           <div class="icon-group">
             <i class="fa fa-user fa-lg"></i>
             <input type="text" name="loginName" placeholder="아이디" />
@@ -38,9 +39,10 @@
             <i class="fa fa-key fa-lg"></i>
             <input type="password" name="password" placeholder="비밀번호" />
           </div> <br/>
-          <button type="button" class="btn blue">
+          <button type="submit" class="btn blue">
             <i class="fa fa-sign-in-alt"></i>로그인</button>
           <a href="#" class="btn"><i class="fa fa-user-plus"></i>회원가입</a>
+          <div th:if="${ param.error != null }" style="color: red">로그인 실패</div>         
         </form>
       </div>
     </div>

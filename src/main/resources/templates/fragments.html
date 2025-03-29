@@ -5,9 +5,18 @@
 <div class="main-menu" th:fragment="main-menu">
   <div>
     <h1>소프 게시판</h1>
-    <a href="/">홈</a>
-    <a href="/login">로그인</a>
-    <a href="/user/list">사용자 관리</a>
+    <span sec:authorize="!isAuthenticated()" class="right">
+      <a href="/login">로그인</a>
+    </span>                  
+    <span sec:authorize="isAuthenticated()">
+      <a href="/user/list">사용자 관리</a>
+    </span>
+    <span sec:authorize="isAuthenticated()" class="right">
+      <a href="#">
+        <span th:text="${#authentication.principal.name}"></span>
+      </a>
+      <a href="/logout_processing">로그아웃</a>
+    </span>
   </div>
 </div>
 
