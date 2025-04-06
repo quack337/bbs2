@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html 
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="utf-8">
+  <title>소프 게시판</title>
+  <link rel="stylesheet" href="/common.css" />
+  <style>
+    article { min-height: 500px; }
+  </style>
+</head>
+<body>
+<div th:replace="~{fragments::main-menu}"></div>
+<div class="container">
+  <article>
+    <h1>사용자 등록 성공</h1>
+  </article>
+  <div th:replace="~{fragments::footer}"></div>
+</div>
+</body>
+</html>
