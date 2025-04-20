@@ -108,7 +108,7 @@ public class UserService {
             throw new Exception("입력 데이터 오류");
         Optional<User> user2 = userRepository.findByLoginName(userEdit.getLoginName());
         if (user2.isPresent() && user2.get().getId() != userEdit.getId()) {
-            bindingResult.rejectValue("userNo", null, "사용자 아이디가 중복됩니다");
+            bindingResult.rejectValue("loginName", null, "사용자 아이디가 중복됩니다");
             throw new Exception("입력 데이터 오류");
         }
         User user = modelMapper.map(userEdit, User.class);
