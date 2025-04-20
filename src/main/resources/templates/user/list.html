@@ -44,7 +44,9 @@
               <th>활성</th><th>권한</th></tr>
           </thead>
           <tbody> 
-            <tr th:each="u : ${ users }"> 
+            <tr th:each="u : ${ users }"
+                th:href="${ 'edit?id=' + u.id + '&' + pagination.queryString }"
+                onclick="onClickHref(event)">           
               <td th:text="${ u.id }"></td>
               <td th:text="${ u.loginName }"></td>
               <td th:text="${ u.name }"></td>

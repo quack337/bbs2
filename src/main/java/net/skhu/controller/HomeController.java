@@ -7,10 +7,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import net.skhu.model.UserSignUp;
 import net.skhu.service.UserService;
 
 @Controller
+@Slf4j
 public class HomeController {
 
     @Autowired UserService userService;
@@ -39,6 +41,7 @@ public class HomeController {
             userService.insert(userSignUp, bindingResult);
             return "redirect:signUpComplete";
         } catch (Exception ex) {
+            log.error("회원가입 에러", ex);
             bindingResult.rejectValue("", null, "등록할 수 없습니다.");
             return "home/signUp";
         }
@@ -48,5 +51,4 @@ public class HomeController {
     public String signUpComplete(Model model) {
         return "home/signUpComplete";
     }
-
 }

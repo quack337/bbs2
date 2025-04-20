@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>소프 게시판</title>
+  <link rel="stylesheet" href="/common.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" />
+  <style>
+    article { min-height: 500px; }
+    div.panel { margin: 100px auto; width: 500px; }
+    div.panel-body { text-align: center; }
+    i { color: #d00; }
+    p { font-size: 14pt; color: #800; }    
+  </style>
+</head>
+<body>
+<div th:replace="~{fragments::main-menu}"></div>
+<div class="container">
+  <main>
+    <div class="panel">
+      <h1 class="panel-header">에러 발생</h1>
+      <div class="panel-body">  
+        <p><i class="fa fa-exclamation-triangle fa-lg"></i> 
+           <span th:text="${ message }"></span></p>  
+        <a href="/" class="btn"> 시작 화면으로</a>
+      </div>
+    </div>    
+  </main>
+  <div th:replace="~{fragments::footer}"></div>
+</div>
+</body>
+</html>
