@@ -42,6 +42,7 @@
           <button type="submit" class="btn blue">
             <i class="fa fa-sign-in-alt"></i>로그인</button>
           <a href="/signUp" class="btn"><i class="fa fa-user-plus"></i>회원가입</a>
+          <a href="/oauth2/authorization/github" class="btn">github 로그인</a>
           <div th:if="${ param.error != null }" style="color: red">로그인 실패</div>         
         </form>
       </div>

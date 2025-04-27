@@ -20,6 +20,7 @@ public class User {
     String email;
     boolean enabled;
     String userType;
+    String openId;
 
     @ManyToOne
     @JoinColumn(name="departmentId")

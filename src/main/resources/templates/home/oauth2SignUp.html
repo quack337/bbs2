@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html 
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>쇼프 게시판</title>
+  <link rel="stylesheet"  href="/common.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" />
+  <style>
+    nav { padding: 5px; border-bottom: 1px solid #ddd; margin-bottom: 25px; }
+    div.panel {
+      width: 600px; margin: 50px auto;
+      border: 1px solid #ddd; border-radius: 5px;
+      background-color: #fafafa;
+      box-shadow: 3px 3px 3px #ccc;
+    }
+    div.panel h1 {
+      margin: 0; font-size: 14pt; font-weight: bold; 
+      background:linear-gradient(90deg, #def, #bcd); padding: 10px 15px 7px 15px;
+    }
+    div.panel-body { padding: 20px; }    
+    input:not([type=radio]) { padding: 0.7em 1em; margin-bottom: 7px; width: 300px; 
+      border: 2px solid #dee; border-radius: 8px; }
+    div.panel input:focus { border: 2px solid #aaf; outline: none; }
+    div.panel .btn2 { margin-top: 10px; padding: 0.7em 1.5em; }
+    form > div { margin-bottom: 20px; }
+    label:nth-child(1) { font-size: 11pt; font-weight: bold; display: block; }
+    div.error { color: red; }
+  </style>
+</head>
+<body>
+<div th:replace="~{fragments::main-menu}"></div>
+<div class="container">
+  <nav><i class="fas fa-caret-right"></i> 회원가입 </nav>
+  <div class="panel">
+    <h1 class="panel-header">회원가입</h1>
+    <div class="panel-body">
+      <form method="post" th:action="@{''}" th:object="${userOAuth2SignUp}">
+        <div>
+          <label>사용자 아이디:</label>
+          <input type="text" th:field="*{loginName}" placeholder="아이디를 입력하세요" />
+          <div class="error" th:errors="*{loginName}"></div>
+        </div>
+        <div>
+          <label>이름:</label>
+          <input type="text"  th:field="*{name}" placeholder="이름을 입력하세요" />
+          <div class="error" th:errors="*{name}"></div>
+        </div>
+        <div>
+          <label>이메일:</label>
+          <input type="email" th:field="*{email}" placeholder="이메일 주소를 입력하세요" />
+          <div class="error" th:errors="*{email}"></div>
+        </div>
+        <div>
+          <label>사용자 유형:</label>
+          <label><input type="radio" th:field="*{userType}" value="교수" /> 교수</label>
+          <label><input type="radio" th:field="*{userType}" value="학생" /> 학생</label>
+          <div class="error" th:errors="*{userType}"></div>
+        </div>
+        <button type="submit" class="btn blue"><i class="fa fa-user-plus"></i> 회원가입</button>
+        <a href="#" class="btn"><i class="fa fa-times"></i> 취소</a>
+        <div class="error" th:errors="${userOAuth2SignUp}"></div>
+      </form>
+    </div>
+  </div>  
+  <div th:replace="~{fragments::footer}"></div>
+</div>
+</body>
+</html>

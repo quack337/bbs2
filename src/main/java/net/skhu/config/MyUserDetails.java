@@ -2,13 +2,15 @@ package net.skhu.config;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import lombok.Data;
 import net.skhu.entity.User;
 
 @Data
-public class MyUserDetails implements UserDetails {
+public class MyUserDetails implements UserDetails, OAuth2User {
     private static final long serialVersionUID = 1L;
 
     final boolean accountNonExpired = true;
@@ -18,6 +20,7 @@ public class MyUserDetails implements UserDetails {
     final String username;
     final boolean isEnabled;
     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+    Map<String, Object> attributes;
 
     final String name;
     final String email;
@@ -39,5 +42,11 @@ public class MyUserDetails implements UserDetails {
         this.name = user.getName();
         this.email = user.getEmail();
         this.userType = user.getUserType();
+    }
+
+    public MyUserDetails(User user, Map<String, Object> attributes) {
+        this(user);
+        this.attributes = attributes;
+        this.authorities.add(new SimpleGrantedAuthority("OAUTH2_USER"));
     }
 }

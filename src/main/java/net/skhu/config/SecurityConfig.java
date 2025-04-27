@@ -19,6 +19,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/oauth2/**", "/login/**").permitAll()
                 .anyRequest().permitAll()
             )
             .formLogin((form) -> form
@@ -34,7 +35,10 @@ public class SecurityConfig {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout_processing"))
                 .logoutSuccessUrl("/login")
                 .invalidateHttpSession(true)
-                .permitAll());
+                .permitAll())
+            .oauth2Login(oauth2 -> oauth2
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/oauth2signup"));
         return http.build();
     }
 
@@ -42,5 +46,4 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }

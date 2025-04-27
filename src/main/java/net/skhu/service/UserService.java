@@ -1,6 +1,7 @@
 package net.skhu.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import jakarta.validation.Valid;
@@ -16,6 +18,7 @@ import net.skhu.entity.User;
 import net.skhu.model.OptionTag;
 import net.skhu.model.Pagination;
 import net.skhu.model.UserEdit;
+import net.skhu.model.UserOAuth2SignUp;
 import net.skhu.model.UserSignUp;
 import net.skhu.repository.UserRepository;
 
@@ -46,6 +49,41 @@ public class UserService {
         newUser.setPassword(passwordEncoder.encode(userSignUp.getPasswd1()));
         newUser.setEnabled(true);
         userRepository.save(newUser);
+    }
+
+    public User insert(OAuth2AuthenticationToken auth, UserOAuth2SignUp userOAuth2SignUp,
+            BindingResult bindingResult) throws Exception {
+        if (bindingResult.hasErrors())
+            throw new Exception("사용자를 등록할 수 없습니다.");
+        Optional<User> user = userRepository.findByLoginName(userOAuth2SignUp.getLoginName());
+        if (user.isPresent()) {
+            bindingResult.rejectValue("loginName", null, "사용자 아이디가 중복됩니다.");
+            throw new Exception("사용자를 등록할 수 없습니다.");
+        };
+        User newUser = modelMapper.map(userOAuth2SignUp, User.class);
+        newUser.setEnabled(true);
+        newUser.setOpenId(getOpenId(auth));
+        userRepository.save(newUser);
+        return newUser;
+    }
+
+    public String getOpenId(OAuth2AuthenticationToken auth) {
+        String provider = auth.getAuthorizedClientRegistrationId();
+        String id = auth.getPrincipal().getAttributes().get("id").toString();
+        return provider + ":" + id;
+    }
+
+    public Optional<User> findByOpenId(OAuth2AuthenticationToken auth) {
+        String openId = getOpenId(auth);
+        return userRepository.findByOpenId(openId);
+    }
+
+    public UserOAuth2SignUp createUserOAuth2SignUp(OAuth2AuthenticationToken auth) {
+        Map<String, Object> attributes = auth.getPrincipal().getAttributes();
+        var userOAuthSignUp = new UserOAuth2SignUp();
+        userOAuthSignUp.setName(attributes.get("name").toString());
+        userOAuthSignUp.setEmail(attributes.get("email").toString());
+        return userOAuthSignUp;
     }
 
     static OptionTag[] orderOptions = new OptionTag[] {
