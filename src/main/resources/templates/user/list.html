@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" />
   <script type="text/javascript" src="/common.js"></script>
   <style>
-    div.panel { width: 1000px; } 
+    div.panel { width: 1000px; }
     form select:nth-child(1) { margin-right: 4em; }
     form select:last-child { float: right; }
     table.list { width: 100%; margin-top: 1em; }
@@ -17,7 +17,7 @@
 <div th:replace="~{fragments::main-menu}"></div>
 <div class="container">
   <nav><i class="fas fa-caret-right"></i> 시스템 관리 - 사용자 목록</nav>
-  <main>  
+  <main>
     <div class="panel">
       <h1 class="panel-header">사용자 목록</h1>
       <div class="panel-body">
@@ -37,16 +37,16 @@
             <option value="10">10</option><option value="15">15</option>
             <option value="30">30</option><option value="50">50</option>
           </select>
-        </form>        
+        </form>
         <table class="list">
           <thead>
             <tr><th>ID</th><th>사용자 아이디</th><th>이름</th><th>이메일</th>
               <th>활성</th><th>권한</th></tr>
           </thead>
-          <tbody> 
+          <tbody>
             <tr th:each="u : ${ users }"
                 th:href="${ 'edit?id=' + u.id + '&' + pagination.queryString }"
-                onclick="onClickHref(event)">           
+                onclick="onClickHref(event)">
               <td th:text="${ u.id }"></td>
               <td th:text="${ u.loginName }"></td>
               <td th:text="${ u.name }"></td>
@@ -59,9 +59,9 @@
         <div class="pagination" th:data-record-count="${pagination.recordCount}"
           th:data-page-size="${pagination.sz}" th:data-current-page="${pagination.pg}"></div>
       </div>
-    </div>           
+    </div>
   </main>
-  <div th:replace="~{fragments::footer}"></div>       
+  <div th:replace="~{fragments::footer}"></div>
 </div>
 </body>
 </html>

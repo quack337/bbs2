@@ -67,9 +67,22 @@ public class UserService {
         return newUser;
     }
 
+    Map<String, Object> getAttributes(OAuth2AuthenticationToken auth) {
+        String provider = auth.getAuthorizedClientRegistrationId();
+        Map<String, Object> attributes = auth.getPrincipal().getAttributes();
+        if (provider.equals("naver"))
+            attributes = (Map<String, Object>)attributes.get("response");
+        return attributes;
+    }
+
     public String getOpenId(OAuth2AuthenticationToken auth) {
         String provider = auth.getAuthorizedClientRegistrationId();
-        String id = auth.getPrincipal().getAttributes().get("id").toString();
+        String id = "";
+        switch (provider) {
+            case "github": id = getAttributes(auth).get("id").toString(); break;
+            case "google": id = getAttributes(auth).get("sub").toString(); break;
+            case "naver": id = getAttributes(auth).get("id").toString(); break;
+        }
         return provider + ":" + id;
     }
 
@@ -79,7 +92,7 @@ public class UserService {
     }
 
     public UserOAuth2SignUp createUserOAuth2SignUp(OAuth2AuthenticationToken auth) {
-        Map<String, Object> attributes = auth.getPrincipal().getAttributes();
+        Map<String, Object> attributes = getAttributes(auth);
         var userOAuthSignUp = new UserOAuth2SignUp();
         userOAuthSignUp.setName(attributes.get("name").toString());
         userOAuthSignUp.setEmail(attributes.get("email").toString());

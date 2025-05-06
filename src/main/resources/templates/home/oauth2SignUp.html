@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html 
+<html
   xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
@@ -16,11 +16,11 @@
       box-shadow: 3px 3px 3px #ccc;
     }
     div.panel h1 {
-      margin: 0; font-size: 14pt; font-weight: bold; 
+      margin: 0; font-size: 14pt; font-weight: bold;
       background:linear-gradient(90deg, #def, #bcd); padding: 10px 15px 7px 15px;
     }
-    div.panel-body { padding: 20px; }    
-    input:not([type=radio]) { padding: 0.7em 1em; margin-bottom: 7px; width: 300px; 
+    div.panel-body { padding: 20px; }
+    input:not([type=radio]) { padding: 0.7em 1em; margin-bottom: 7px; width: 300px;
       border: 2px solid #dee; border-radius: 8px; }
     div.panel input:focus { border: 2px solid #aaf; outline: none; }
     div.panel .btn2 { margin-top: 10px; padding: 0.7em 1.5em; }
@@ -63,7 +63,7 @@
         <div class="error" th:errors="${userOAuth2SignUp}"></div>
       </form>
     </div>
-  </div>  
+  </div>
   <div th:replace="~{fragments::footer}"></div>
 </div>
 </body>

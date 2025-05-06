@@ -7,7 +7,7 @@
     <h1>소프 게시판</h1>
     <span sec:authorize="!isAuthenticated()" class="right">
       <a href="/login">로그인</a>
-    </span>                  
+    </span>
     <span sec:authorize="hasRole('ROLE_ADMIN')">
       <a href="/user/list">사용자 관리</a>
     </span>

@@ -6,11 +6,11 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" />
   <style>
     div.panel { width: 600px; margin: 40px; background-color: #fafafa; }
-    input:not([type=radio]) { padding: 0.7em 1em; margin-bottom: 7px; width: 300px; 
+    input:not([type=radio]) { padding: 0.7em 1em; margin-bottom: 7px; width: 300px;
       border: 2px solid #dee; border-radius: 8px; }
     div.panel input:focus { border: 2px solid #aaf; outline: none; }
     form > div { margin-bottom: 1.5em; }
-    label:nth-child(1) { font-size: 11pt; font-weight: bold; display: block; 
+    label:nth-child(1) { font-size: 11pt; font-weight: bold; display: block;
       margin-bottom: 0.4em; }
     div.error { color: red; }
   </style>
@@ -19,9 +19,9 @@
 <div th:replace="~{fragments::main-menu}"></div>
 <div class="container">
   <nav><i class="fas fa-caret-right"></i> 시스템 관리 - 사용자 목록</nav>
-  <main>  
+  <main>
     <div class="panel">
-      <h1 class="panel-header" 
+      <h1 class="panel-header"
           th:text="${userEdit.id > 0 ? '사용자 수정' : '사용자 등록'}"></h1>
       <div class="panel-body">
          <form method="post" th:action="@{''}" th:object="${userEdit}">
@@ -63,8 +63,8 @@
             <div class="error" th:errors="${userEdit}"></div>
           </form>
       </div>
-    </div> 
-  </main> 
+    </div>
+  </main>
   <div th:replace="~{fragments::footer}"></div>
 </div>
 </body>
