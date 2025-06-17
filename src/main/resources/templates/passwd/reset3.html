@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/common.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" /> 
+  <style>
+    div.panel { width: 500px; margin: 3em; }
+    form { padding: 2em; }
+    .btn { margin-top: 10px; }
+    div.message { font-size: 12pt; margin: 1em; padding-left: 1em; }
+    div.error { font-size: 12pt; margin: 1em; color: red; padding-left: 1em ; }
+    span { color: blue; }    
+  </style>
+</head>
+<body>
+<div th:replace="~{fragments::main-menu}"></div>
+<div class="container">
+<nav><i class="fas fa-caret-right"></i> 비밀번호 초기화 - 초기화</nav>
+  <main>
+    <div class="panel">
+      <h1 class="panel-header">비밀번호 초기화</h1>
+      <form method="post" class="box">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <button type="submit" class="btn blue">
+            <i class="fa-solid fa-key"></i> 초기화</button>
+      </form>
+      <div th:if="${ newPw != null }" class="message">
+        <p>비밀번호을 초기화했습니다.</p>
+        <p>초기화된 새 비밀번호는 <span th:text="${ newPw }"></span> 입니다. </p>
+      </div>
+      <div th:if="${ error != null }" class="error">
+        <p>비밀번호을 초기화 실패했습니다.</p>
+      </div>      
+    </div>
+  </main>
+  <div th:replace="~{fragments::footer}"></div>
+</div>
+</body>
+</html>

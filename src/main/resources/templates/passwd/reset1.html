@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/common.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" />
+  <style>
+    div.panel { width: 600px; margin: 3em; }
+    form { padding: 2em; display: inline-block; }
+    div.table { display: table; }
+    div.row { display: table-row; }
+    div.cell { display: table-cell; padding: 5px; }
+    .btn { margin-top: 1em; margin-left: 2em; }
+    .message { color: blue; margin-top: 1em; }
+    .error { color: red; margin-top: 1em; }
+    img { display: none; margin-left: 2em; }
+  </style>
+  <script>
+    function showWait() {
+      var img = document.getElementById("wait");
+      img.style.display = "inline-block";
+    }
+  </script>
+</head>
+<body>
+<div th:replace="~{fragments::main-menu}"></div>
+<div class="container">
+<nav><i class="fas fa-caret-right"></i> 비밀번호 초기화 - 메일전송</nav>
+  <main>
+    <div class="panel">
+      <h1 class="panel-header">비밀번호 초기화</h1>
+      <form id="form" method="post" class="box" th:object="${sendPwMail}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <div class="table">
+          <div class="row">
+            <div class="cell">아이디:</div>
+            <div class="cell">
+              <input type="text" th:field="*{loginName}" />
+              <div class="error" th:errors="*{loginName}"></div>          
+            </div>
+          </div>
+          <div class="row">
+              <div class="cell">이메일:</div>
+              <div class="cell">
+              <input type="text" th:field="*{email}" />
+              <div class="error" th:errors="*{email}"></div>          
+              </div>
+          </div>
+        </div>
+        <button type="submit" class="btn blue" onclick="showWait()">
+            <i class="fa-solid fa-envelope"></i> 메일 전송</button>
+        <div class="message" th:if="${ message != null }" th:text="${ message }"></div>
+        <div class="error" th:errors="${sendPwMail}"></div>
+      </form>
+      <img id="wait" src="/images/wait.gif" />
+    </div>
+  </main>
+  <div th:replace="~{fragments::footer}"></div>
+</div>
+</body>
+</html>
